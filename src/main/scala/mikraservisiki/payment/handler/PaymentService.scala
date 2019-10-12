@@ -1,8 +1,8 @@
-package mikraservisiki.orders.handler
+package mikraservisiki.payment.handler
 
-import mikraservisiki.orders.dao.OrdersDao
-import mikraservisiki.orders.dto.Orders.OrderDto
-import mikraservisiki.orders.schema.TableDefinitions.Order
+import mikraservisiki.payment.dao.OrdersDao
+import mikraservisiki.payment.dto.Orders.OrderDto
+import mikraservisiki.payment.schema.TableDefinitions.Order
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

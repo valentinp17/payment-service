@@ -1,4 +1,4 @@
-package mikraservisiki.orders.dto
+package mikraservisiki.payment.dto
 
 import akka.http.scaladsl.model.DateTime
 import play.api.libs.json.{Format, Json}

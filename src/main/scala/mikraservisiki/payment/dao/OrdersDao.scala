@@ -1,10 +1,10 @@
-package mikraservisiki.orders.dao
+package mikraservisiki.payment.dao
 
 import java.sql.Timestamp
 import java.time.LocalDateTime
 
-import mikraservisiki.orders.HasDbConfigProvider
-import mikraservisiki.orders.schema.TableDefinitions._
+import mikraservisiki.payment.HasDbConfigProvider
+import mikraservisiki.payment.schema.TableDefinitions._
 
 import scala.concurrent.Future
 

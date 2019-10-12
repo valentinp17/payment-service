@@ -1,4 +1,4 @@
-package mikraservisiki.orders
+package mikraservisiki.payment
 
 import com.typesafe.config.ConfigFactory
 import slick.basic.DatabaseConfig

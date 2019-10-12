@@ -1,8 +1,8 @@
-package mikraservisiki.orders.schema
+package mikraservisiki.payment.schema
 
 import java.sql.Timestamp
 
-import mikraservisiki.orders.HasDbConfigProvider
+import mikraservisiki.payment.HasDbConfigProvider
 
 object TableDefinitions {
 

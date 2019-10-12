@@ -1,12 +1,12 @@
-package mikraservisiki.orders.routing
+package mikraservisiki.payment.routing
 
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.directives.{FutureDirectives, MethodDirectives, PathDirectives, RouteDirectives}
 import de.heikoseeberger.akkahttpplayjson.PlayJsonSupport
-import mikraservisiki.orders.dto.UserDetails.UserDetailsDto
-import mikraservisiki.orders.handler.PaymentService
+import mikraservisiki.payment.dto.UserDetails.UserDetailsDto
+import mikraservisiki.payment.handler.PaymentService
 
 object AppRouting extends RouteDirectives
   with PathDirectives
@@ -14,7 +14,7 @@ object AppRouting extends RouteDirectives
   with PlayJsonSupport
   with FutureDirectives {
 
-  import mikraservisiki.orders.dto.Orders._
+  import mikraservisiki.payment.dto.Orders._
 
   def route(
              paymentService: PaymentService
