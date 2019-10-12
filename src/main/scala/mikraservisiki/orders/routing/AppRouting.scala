@@ -20,7 +20,7 @@ object AppRouting extends RouteDirectives
              paymentService: PaymentService
            ): Route =
     pathPrefix("payment") {
-      (path(LongNumber) & put& entity(as[UserDetailsDto])) { (orderId, UserDetailsDto) =>
+      (path(LongNumber) & put & entity(as[UserDetailsDto])) { (orderId, UserDetailsDto) =>
         onSuccess(paymentService.performPayment(orderId, UserDetailsDto.username, UserDetailsDto.cardAuthorizationInfo)) {
           case Some(order) => complete(OrderDto(order.id))
           case None => complete(StatusCodes.Unauthorized)

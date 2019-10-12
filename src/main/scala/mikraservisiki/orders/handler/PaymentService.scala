@@ -18,11 +18,8 @@ class PaymentServiceImpl(
 
   override def performPayment(orderId: Long, username: String, cardAuthorizationInfo: String): Future[Option[OrderDto]] = {
     cardAuthorizationInfo match {
-      case "AUTHORIZED" => orderDao.addOrder(orderId, username, cardAuthorizationInfo).flatMap(order =>
-      OrderDto(
-      case Some(Order) => OrderDto(Order.)
-      ))
-      case _ => Future(None)
+      case "AUTHORIZED" => orderDao.addOrder(orderId, username, cardAuthorizationInfo).map(order => Some(OrderDto(order.id)))
+      case _ => Future.successful(None)
     }
   }
 }
