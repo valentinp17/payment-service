@@ -14,7 +14,7 @@ object TableDefinitions {
     val orders: TableQuery[Orders] = TableQuery[Orders]
 
     class Orders(tag: Tag) extends Table[Order](tag, "orders"){
-      def * = (id, paymentAmount, date, card) <> (Order.tupled, Order.unapply)
+      def * = (id, paymentAmount, date, card, status) <> (Order.tupled, Order.unapply)
 
       def id = column[Long]("id", O.PrimaryKey)
 
@@ -23,10 +23,12 @@ object TableDefinitions {
       def date = column[Timestamp]("date")
 
       def card = column[String]("card")
+
+      def status = column[String]("status")
     }
   }
 
-  case class Order(id: Long, paymentAmount: BigDecimal, date: Timestamp, card: String)
+  case class Order(id: Long, paymentAmount: BigDecimal, date: Timestamp, card: String, status: String)
 }
 
 

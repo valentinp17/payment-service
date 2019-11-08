@@ -6,10 +6,11 @@ import java.time.LocalDateTime
 import mikraservisiki.payment.HasDbConfigProvider
 import mikraservisiki.payment.schema.TableDefinitions._
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 trait OrdersDao {
-  def addOrder(orderId: Long, username: String, cardAuthorizationInfo: String): Future[Order]
+  def addOrder(orderId: Long, paymentAmount: BigDecimal, card: String, status: String): Future[Boolean]
 }
 
 object RelationalOrdersDao extends OrdersDao
@@ -18,9 +19,8 @@ object RelationalOrdersDao extends OrdersDao
 
   import profile.api._
 
-  override def addOrder(orderId: Long, username: String, cardAuthorizationInfo: String): Future[Order] = db.run {
-    (orders returning orders) += Order(orderId, 500,
-      Timestamp.valueOf(LocalDateTime.now()), "1234567812345678")
-  }
+  override def addOrder(orderId: Long, paymentAmount: BigDecimal, card: String, status: String): Future[Boolean] = db.run {
+    orders += Order(orderId, paymentAmount, Timestamp.valueOf(LocalDateTime.now), card, status)
+  } map (_ == 1)
 
 }

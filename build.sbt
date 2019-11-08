@@ -1,4 +1,4 @@
-name := "orders-service"
+name := "payment-service"
 
 version := "0.1"
 
