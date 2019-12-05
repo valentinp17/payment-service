@@ -4,7 +4,14 @@ version := "0.1"
 
 scalaVersion := "2.12.5"
 
+
+resolvers ++= Seq(
+  "avast" at "https://dl.bintray.com/avast/maven"
+)
+
 enablePlugins(JavaServerAppPackaging)
+
+val opRabbitVersion = "2.1.0"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.5.12",
@@ -13,6 +20,8 @@ libraryDependencies ++= Seq(
   "de.heikoseeberger" %% "akka-http-play-json" % "1.29.1",
   "com.typesafe.akka" %% "akka-stream" % "2.5.12",
   "com.typesafe.slick" %% "slick" % "3.2.3",
+  "com.spingo" %% "op-rabbit-core" % opRabbitVersion,
+  "com.spingo" %% "op-rabbit-play-json" % opRabbitVersion,
   "com.h2database" % "h2" % "1.4.192",
   "org.postgresql" % "postgresql" % "42.2.8",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
@@ -24,4 +33,3 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-testkit" % "10.1.1" % Test
 
 )
-

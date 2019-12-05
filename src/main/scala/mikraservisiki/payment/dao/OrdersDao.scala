@@ -10,7 +10,8 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 trait OrdersDao {
-  def addOrder(orderId: Long, paymentAmount: BigDecimal, card: String, status: String): Future[Boolean]
+  def addOrder(order: Order): Future[Boolean]
+  def markNotificationsSent(orderId: Long): Future[Boolean]
 }
 
 object RelationalOrdersDao extends OrdersDao
@@ -19,8 +20,11 @@ object RelationalOrdersDao extends OrdersDao
 
   import profile.api._
 
-  override def addOrder(orderId: Long, paymentAmount: BigDecimal, card: String, status: String): Future[Boolean] = db.run {
-    orders += Order(orderId, paymentAmount, Timestamp.valueOf(LocalDateTime.now), card, status)
-  } map (_ == 1)
+  override def addOrder(order: Order): Future[Boolean] = db.run {
+    (orders += order) map (_ == 1)
+  }
 
+  override def markNotificationsSent(orderId: Long): Future[Boolean] = db.run {
+    orders.filter(_.id === orderId).map(_.notificationsSent).update(true).map(_ == 1)
+  }
 }
